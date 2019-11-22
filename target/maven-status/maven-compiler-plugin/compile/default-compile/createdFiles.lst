@@ -1,3 +1,8 @@
-eu/billyinc/sopra1/API/APIHelper.class
+eu/billyinc/sopra1/board/Board.class
+eu/billyinc/sopra1/api/APIHelper.class
 eu/billyinc/sopra1/App.class
+eu/billyinc/sopra1/board/EpicHero.class
+eu/billyinc/sopra1/enumeration/Format.class
 eu/billyinc/sopra1/BattleMain.class
+eu/billyinc/sopra1/board/State.class
+eu/billyinc/sopra1/board/EpicHeroesLeague.class
