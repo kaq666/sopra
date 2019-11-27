@@ -1,7 +1,7 @@
 package eu.billyinc.sopra1.enumeration;
 
 public enum Attack {
-	GUARD("PROTECT"), ORC("YELL"), PRIEST("HEAL");
+	GUARD("PROTECT"), ORC("YELL"), PRIEST("HEAL"), PALADIN("CHARGE"), ARCHER("FIREBOLT"), CHAMAN("CLEANSE");
 	
 	private String specialAttack;
 

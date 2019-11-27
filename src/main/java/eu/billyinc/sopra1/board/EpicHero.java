@@ -103,7 +103,11 @@ public class EpicHero {
 	
 	public String specialAttack(int enemieID) {		
 		if(this.currentMana > 1 && !this.isDead) {
-			return "A" + this.orderNumberInTeam + "," + Attack.valueOf(this.fighterClass).getSpecialAttack() + ",E" + enemieID;
+			if ("PRIEST".contentEquals(this.fighterClass) || "CHAMAN".contentEquals(this.fighterClass) || "GUARD".contentEquals(this.fighterClass)) {
+				return "A" + this.orderNumberInTeam + "," + Attack.valueOf(this.fighterClass).getSpecialAttack() + ",A" + enemieID + "$";
+			} else {
+				return "A" + this.orderNumberInTeam + "," + Attack.valueOf(this.fighterClass).getSpecialAttack() + ",E" + enemieID + "$";
+			}
 		} else {
 			return rest();
 		}
@@ -111,22 +115,48 @@ public class EpicHero {
 	
 	public String attack(int enemieID) {
 		if(this.currentMana > 0 && !this.isDead) {
-			return "A" + this.orderNumberInTeam + ",ATTACK,E" + enemieID;
+			return "A" + this.orderNumberInTeam + ",ATTACK,E" + enemieID + "$";
 		} else {
 			return rest();
 		}
 	}
 	
 	public String rest() {
-		return "A" + this.orderNumberInTeam + ",REST,A" + this.orderNumberInTeam;
+		if (!this.isDead) {
+			return "A" + this.orderNumberInTeam + ",REST,A" + this.orderNumberInTeam + "$";
+		} else {
+			return "";
+		}
 	}
 	
-	public String defend(int heroID) {
+	public String defend() {
 		if(this.currentMana > 0 && !this.isDead) {
-			return "A" + this.orderNumberInTeam + ",DEFEND,E" + heroID;
+			return "A" + this.orderNumberInTeam + ",DEFEND,A" + this.orderNumberInTeam + "$";
 		} else {
 			return rest();
 		}
+	}
+	
+	public boolean isBurning() {
+		if (this.getStates() != null) {
+			for (State state : this.getStates()) {
+				if ("BURNING".equals(state.getType())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isStunned() {
+		if (this.getStates() != null) {
+			for (State state : this.getStates()) {
+				if ("STUNNED".equals(state.getType())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 }
